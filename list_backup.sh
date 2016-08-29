@@ -4,7 +4,7 @@ SAVE_PATH='/var/www/dbbackup/'
 PASS=root
 HOST=localhost
 
-# also backup all_clubs , common_db, information_schema  and mysql db
+# list db name with space separator
 dbs=(mysql information_schema)
 
 for db in ${dbs[*]}

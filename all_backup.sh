@@ -9,17 +9,13 @@ show databases;
 END))
 
 for dbname in "${ALLDBS[@]}"
-
-do    
-
+do
     if [[ "$dbname" == "Database" ]]; then
 	continue
     fi
-
     DB="$dbname"    
     echo "Dumping for $dbname"		
     mysqldump --host=$HOST -u "root" --single-transaction -p$PASS --opt "$DB" | sed -e 's/DEFINER[ ]*=[ ]*[^*]*\*/\*/' | gzip > $SAVE_PATH/"$dbname".$(date +%Y%m%d).sql.gz
-
 done
 
 cd $SAVE_PATH
